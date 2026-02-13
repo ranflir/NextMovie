@@ -1,15 +1,13 @@
-import MovieList from "@/components/MovieList";
-import * as styles from "./PopularMovies.css.js";
+import MovieList from '@/components/MovieList';
+import * as styles from './PopularMovies.css.js';
 
 export default function PopularMovies() {
   const moviesPromise = fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/movies`,
+    { cache: 'force-cache' }, // 추가
   ).then((res) => res.json());
 
   return (
-    <MovieList
-      moviesPromise={moviesPromise}
-      className={styles.container}
-    />
+    <MovieList moviesPromise={moviesPromise} className={styles.container} />
   );
 }

@@ -10,8 +10,9 @@ async function SearchResult({ keyword }) {
       keyword,
     )}`,
   );
-  if (!response.ok)
-    return<div>검색 과정에서 오류가 발생했습니다.</div>;
+  if (!response.ok) {
+    return <div>검색 과정에서 오류가 발생했습니다.</div>;
+  }
 
   const { movies } = await response.json();
 
