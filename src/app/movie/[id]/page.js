@@ -1,4 +1,18 @@
+import MovieDetail from "@/components/MovieDetail";
+
 export default async function MoviePage({ params }) {
   const { id } = await params;
-  return <div>영화: {id}</div>;
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/movies/${id}`,
+  );
+  if (!response.ok)
+    return<div>영화 정보를 불러올 수 없습니다.</div>;
+
+  const movie = await response.json();
+  return (
+    <div>
+      <MovieDetail {...movie} />
+    </div>
+  );
 }
